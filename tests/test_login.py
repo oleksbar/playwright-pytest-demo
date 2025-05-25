@@ -1,16 +1,14 @@
 from pages.login_page import LoginPage
 
 
-def test_successful_login(browser):
-    page = browser.new_page()
+def test_successful_login(page):
     login = LoginPage(page)
     login.goto()
     login.login("tomsmith", "SuperSecretPassword!")
     assert "You logged into a secure area!" in login.get_flash_message()
     page.close()
 
-def test_failed_login(browser):
-    page = browser.new_page()
+def test_failed_login(page):
     login = LoginPage(page)
     login.goto()
     login.login("tomsmith", "wrongpassword")
